@@ -49,6 +49,24 @@ The output of the image differencing task (subtractImages combined with detectAn
 % ADD CONTENT HERE
 % You can also use the \input command to include several content files.
 
+\section{Experiment Setup}
+\subsection{Pipeline}
+In the first experiment we simply pass raw images through the AP pipeline (\emph{without} running the rbClassification task) to get difference images and the corresponding sources.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{pipeline.png}
+  \caption{The lower part of the pipeline used for assessing the performance of the image differencing task. Note that the ``rbClassifier'' has been removed from the pipeline.}
+  \label{fig:exposure_hist}
+\end{figure}
+
+The \texttt{transformDiaSrcCat} is kept in the pipeline, so the ``sky\_source'' are removed and do not clutter our data.
+We used the \texttt{w\_2023\_38} version of the stack throughout the experiment.
+
+
+
+
+
 \appendix
 % Include all the relevant bib files.
 % https://lsst-texmf.lsst.io/lsstdoc.html#bibliographies
