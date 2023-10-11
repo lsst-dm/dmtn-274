@@ -51,7 +51,7 @@ The output of the image differencing task (subtractImages combined with detectAn
 
 \section{Experiment Setup}
 \subsection{Pipeline}
-In the first experiment we simply pass raw images through the AP pipeline (\emph{without} running the rbClassification task) to get difference images and the corresponding sources.
+In this experiment we simply pass raw images through the AP pipeline (\emph{without} running the rbClassification task) to get difference images and the corresponding sources.
 
 \begin{figure}[h]
   \centering
@@ -63,11 +63,116 @@ In the first experiment we simply pass raw images through the AP pipeline (\emph
 The \texttt{transformDiaSrcCat} is kept in the pipeline, so the ``sky\_source'' are removed and do not clutter our data.
 We used the \texttt{w\_2023\_38} version of the stack throughout the experiment.
 
-
-
+\subsection{Data}
+We use data from DC2, so that we have access to the corresponding truth labels. We use exposures from tract \texttt{3080} through the pipeline, and use \texttt{dataIds} of the first 50 of them, as returned by the \texttt{butler} query, to fetch the sample set of detected sources and relevant ground truth for this experiment -- the list is pasted in appendix~\ref{app:ids}
 
 
 \appendix
+\section{List of dataIds}
+\label{app:ids}
+\begin{lstlisting}[language=Python, basicstyle=\tiny]
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 151, 'physical_filter': 'i_sim_1.4', 'visit': 1030665} records=None
+dataId={'band': 'g', 'instrument': 'LSSTCam-imSim', 'detector': 45, 'physical_filter': 'g_sim_1.4', 'visit': 1039948} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 21, 'physical_filter': 'y_sim_1.4', 'visit': 1010524} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 156, 'physical_filter': 'y_sim_1.4', 'visit': 1012086} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 72, 'physical_filter': 'i_sim_1.4', 'visit': 1030670} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 171, 'physical_filter': 'r_sim_1.4', 'visit': 1006059} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 30, 'physical_filter': 'y_sim_1.4', 'visit': 647595} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 114, 'physical_filter': 'i_sim_1.4', 'visit': 1013711} records=None
+dataId={'band': 'g', 'instrument': 'LSSTCam-imSim', 'detector': 66, 'physical_filter': 'g_sim_1.4', 'visit': 1019980} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 18, 'physical_filter': 'r_sim_1.4', 'visit': 1052891} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 92, 'physical_filter': 'i_sim_1.4', 'visit': 1030665} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 44, 'physical_filter': 'r_sim_1.4', 'visit': 1052890} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 45, 'physical_filter': 'i_sim_1.4', 'visit': 1013734} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 138, 'physical_filter': 'r_sim_1.4', 'visit': 1052890} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 28, 'physical_filter': 'y_sim_1.4', 'visit': 1032264} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 5, 'physical_filter': 'y_sim_1.4', 'visit': 1032264} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 115, 'physical_filter': 'y_sim_1.4', 'visit': 646755} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 147, 'physical_filter': 'r_sim_1.4', 'visit': 1049332} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 29, 'physical_filter': 'i_sim_1.4', 'visit': 1029810} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 165, 'physical_filter': 'r_sim_1.4', 'visit': 638950} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 164, 'physical_filter': 'i_sim_1.4', 'visit': 1030665} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 8, 'physical_filter': 'y_sim_1.4', 'visit': 1032264} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 121, 'physical_filter': 'i_sim_1.4', 'visit': 645623} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 141, 'physical_filter': 'r_sim_1.4', 'visit': 1052890} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 93, 'physical_filter': 'r_sim_1.4', 'visit': 1052890} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 24, 'physical_filter': 'i_sim_1.4', 'visit': 1030664} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 59, 'physical_filter': 'y_sim_1.4', 'visit': 1033987} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 14, 'physical_filter': 'r_sim_1.4', 'visit': 1006099} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 184, 'physical_filter': 'i_sim_1.4', 'visit': 1030666} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 164, 'physical_filter': 'y_sim_1.4', 'visit': 1056411} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 83, 'physical_filter': 'r_sim_1.4', 'visit': 1052890} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 11, 'physical_filter': 'i_sim_1.4', 'visit': 1029805} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 38, 'physical_filter': 'r_sim_1.4', 'visit': 1052890} records=None
+dataId={'band': 'g', 'instrument': 'LSSTCam-imSim', 'detector': 62, 'physical_filter': 'g_sim_1.4', 'visit': 1039916} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 167, 'physical_filter': 'r_sim_1.4', 'visit': 1038217} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 180, 'physical_filter': 'y_sim_1.4', 'visit': 1033109} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 184, 'physical_filter': 'r_sim_1.4', 'visit': 1006059} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 129, 'physical_filter': 'r_sim_1.4', 'visit': 1006007} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 17, 'physical_filter': 'i_sim_1.4', 'visit': 1030664} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 80, 'physical_filter': 'y_sim_1.4', 'visit': 1032264} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 3, 'physical_filter': 'r_sim_1.4', 'visit': 1027069} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 92, 'physical_filter': 'i_sim_1.4', 'visit': 645659} records=None
+dataId={'band': 'g', 'instrument': 'LSSTCam-imSim', 'detector': 111, 'physical_filter': 'g_sim_1.4', 'visit': 1039916} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 70, 'physical_filter': 'i_sim_1.4', 'visit': 1029805} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 113, 'physical_filter': 'y_sim_1.4', 'visit': 1032265} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 154, 'physical_filter': 'y_sim_1.4', 'visit': 646755} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 69, 'physical_filter': 'r_sim_1.4', 'visit': 1006099} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 170, 'physical_filter': 'r_sim_1.4', 'visit': 1038217} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 18, 'physical_filter': 'r_sim_1.4', 'visit': 1049334} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 132, 'physical_filter': 'i_sim_1.4', 'visit': 645659} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 180, 'physical_filter': 'i_sim_1.4', 'visit': 1030665} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 31, 'physical_filter': 'y_sim_1.4', 'visit': 1032264} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 101, 'physical_filter': 'y_sim_1.4', 'visit': 1012178} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 148, 'physical_filter': 'r_sim_1.4', 'visit': 1049335} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 10, 'physical_filter': 'i_sim_1.4', 'visit': 1013734} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 55, 'physical_filter': 'r_sim_1.4', 'visit': 1038222} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 93, 'physical_filter': 'y_sim_1.4', 'visit': 1032264} records=None
+dataId={'band': 'g', 'instrument': 'LSSTCam-imSim', 'detector': 101, 'physical_filter': 'g_sim_1.4', 'visit': 1039916} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 137, 'physical_filter': 'y_sim_1.4', 'visit': 1012086} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 30, 'physical_filter': 'i_sim_1.4', 'visit': 1029810} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 100, 'physical_filter': 'i_sim_1.4', 'visit': 1013734} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 21, 'physical_filter': 'i_sim_1.4', 'visit': 1030664} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 77, 'physical_filter': 'i_sim_1.4', 'visit': 645659} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 115, 'physical_filter': 'i_sim_1.4', 'visit': 1029804} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 163, 'physical_filter': 'i_sim_1.4', 'visit': 1030669} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 41, 'physical_filter': 'r_sim_1.4', 'visit': 1052890} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 129, 'physical_filter': 'i_sim_1.4', 'visit': 645659} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 145, 'physical_filter': 'r_sim_1.4', 'visit': 1049335} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 174, 'physical_filter': 'y_sim_1.4', 'visit': 1056411} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 115, 'physical_filter': 'y_sim_1.4', 'visit': 1012086} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 36, 'physical_filter': 'i_sim_1.4', 'visit': 1029810} records=None
+dataId={'band': 'g', 'instrument': 'LSSTCam-imSim', 'detector': 24, 'physical_filter': 'g_sim_1.4', 'visit': 1039916} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 66, 'physical_filter': 'r_sim_1.4', 'visit': 1006099} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 94, 'physical_filter': 'r_sim_1.4', 'visit': 1038222} records=None
+dataId={'band': 'g', 'instrument': 'LSSTCam-imSim', 'detector': 82, 'physical_filter': 'g_sim_1.4', 'visit': 1039948} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 129, 'physical_filter': 'i_sim_1.4', 'visit': 1030665} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 153, 'physical_filter': 'y_sim_1.4', 'visit': 1033987} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 39, 'physical_filter': 'r_sim_1.4', 'visit': 1006037} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 26, 'physical_filter': 'i_sim_1.4', 'visit': 1029776} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 25, 'physical_filter': 'r_sim_1.4', 'visit': 1049334} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 35, 'physical_filter': 'i_sim_1.4', 'visit': 645659} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 19, 'physical_filter': 'r_sim_1.4', 'visit': 1006061} records=None
+dataId={'band': 'g', 'instrument': 'LSSTCam-imSim', 'detector': 7, 'physical_filter': 'g_sim_1.4', 'visit': 1039948} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 100, 'physical_filter': 'r_sim_1.4', 'visit': 1049335} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 15, 'physical_filter': 'r_sim_1.4', 'visit': 1052891} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 158, 'physical_filter': 'r_sim_1.4', 'visit': 1049335} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 34, 'physical_filter': 'i_sim_1.4', 'visit': 1029778} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 46, 'physical_filter': 'y_sim_1.4', 'visit': 1012178} records=None
+dataId={'band': 'g', 'instrument': 'LSSTCam-imSim', 'detector': 99, 'physical_filter': 'g_sim_1.4', 'visit': 1039916} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 132, 'physical_filter': 'r_sim_1.4', 'visit': 1006007} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 62, 'physical_filter': 'i_sim_1.4', 'visit': 1013734} records=None
+dataId={'band': 'g', 'instrument': 'LSSTCam-imSim', 'detector': 127, 'physical_filter': 'g_sim_1.4', 'visit': 1039948} records=None
+dataId={'band': 'i', 'instrument': 'LSSTCam-imSim', 'detector': 138, 'physical_filter': 'i_sim_1.4', 'visit': 1013711} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 142, 'physical_filter': 'r_sim_1.4', 'visit': 1052890} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 157, 'physical_filter': 'y_sim_1.4', 'visit': 1012086} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 169, 'physical_filter': 'y_sim_1.4', 'visit': 1056413} records=None
+dataId={'band': 'y', 'instrument': 'LSSTCam-imSim', 'detector': 1, 'physical_filter': 'y_sim_1.4', 'visit': 1034820} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 113, 'physical_filter': 'r_sim_1.4', 'visit': 1049335} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 186, 'physical_filter': 'r_sim_1.4', 'visit': 1049332} records=None
+dataId={'band': 'r', 'instrument': 'LSSTCam-imSim', 'detector': 103, 'physical_filter': 'r_sim_1.4', 'visit': 1049335} records=None  
+\end{lstlisting}
+
 % Include all the relevant bib files.
 % https://lsst-texmf.lsst.io/lsstdoc.html#bibliographies
 \section{References} \label{sec:bib}
