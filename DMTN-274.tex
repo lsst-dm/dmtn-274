@@ -64,8 +64,53 @@ The \texttt{transformDiaSrcCat} is kept in the pipeline, so the ``sky\_source'' 
 We used the \texttt{w\_2023\_38} version of the stack throughout the experiment.
 
 \subsection{Data}
-We use data from DC2, so that we have access to the corresponding truth labels. We use exposures from tract \texttt{3080} through the pipeline, and use \texttt{dataIds} of the first 50 of them, as returned by the \texttt{butler} query, to fetch the sample set of detected sources and relevant ground truth for this experiment -- the list is pasted in appendix~\ref{app:ids}
+We use data from DC2, so that we have access to the corresponding truth labels. We use exposures from tract \texttt{3080} through the pipeline, and use \texttt{dataIds} of the first 100 of them, as returned by the \texttt{butler} query, to fetch the sample set of detected sources and relevant ground truth for this experiment -- the list is pasted in appendix~\ref{app:ids}
 
+\subsection{Evaluation Results}
+\begin{verbatim}
+Number of diaSources:  4373
+Number of sources matching the truth:  346
+Number of sources NOT matching the truth (false positives):  4027
+
+Total number of truth objects:  5258
+Number of truth objects not matched to a source (misses):  4912
+\end{verbatim}
+
+According to the about numbers, \underline{$93.4\%$ of the real transients are ``missed forever''}: they haven't survived the upstream task and so do not make it to the real-bogus classifier at all.
+Figure~\ref{fig:distributions} illustrates the distributions of \texttt{mag\_r} and \texttt{delta\_flux} for these real (true) transients.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{mag_r_hist.png}
+  \includegraphics[width=0.4\textwidth]{delta_flux_hist.png}
+  \caption{Distributions of \texttt{mag\_r} and \texttt{delta\_flux} of true transient objects.}
+  \label{fig:distributions}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{precision_recall_curve}
+  \includegraphics[width=0.4\textwidth]{roc_curve}
+  \includegraphics[width=0.9\textwidth]{detection_rate}
+  \caption{Various evaluation curves providing different viewpoints on the performance of the model. Each plot is generated using various higher bounds on the magnitude, to assess the effect of faint/brightness on the results.}
+  \label{fig:evals}
+\end{figure}
+
+The unfamiliar behavior of the evaluation plots in Figure~\ref{fig:evals} is due, in part, to the the extremely high percentage of missed objects resulting from the threshold applied to the output of the difference image, not allowing for the curves to meet the $100\%$ recall level at any point. A similar observation has been reported in August 2022 -- see Figure~\ref{fig:slack}
+
+\clearpage
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{slack}
+  \caption{The similar evaluation curves that have been observed back in August 2022 -- Please see \url{https://lsstc.slack.com/archives/C2B6X08LS/p1659393708935119}. Different colors correpond to different \texttt{delta\_flux} values. The fonts sizes are indeed too small for a printed document, but the idea is to keep the original image intact.}
+  \label{fig:slack}
+\end{figure}
+
+The fact that any such loss is inevitably passed down to the downstream real-bogus classifier has also been theoretically predicted in section 3.2 of DMTN-216. Note that decreasing the threshold applied to the difference image is not a solution for the issue described above. Lowering the threshold would indeed lead to a drastic increase in false positives, and even if a higher recall may be seen in the curves, it will be only at precisions close to zero: the main intention behind the use of thresholding in the current pipeline.
+
+\clearpage
 
 \appendix
 \section{List of dataIds}
